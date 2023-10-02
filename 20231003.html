@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>대한민국 현재 날짜 및 환율</title>
+    <style>
+        #date {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #exchange-rate {
+            font-size: 1rem;
+            margin-top: 0px;
+        }
+
+        /* 첫 번째 h2 요소의 상단 여백을 조정합니다. */
+        #exchange-rate h2:first-child {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 2px; /* 첫 번째 h2 요소의 하단 여백을 조정합니다. */
+        }
+
+        /* 두 번째 h2 요소의 하단 여백을 조정합니다. */
+        #exchange-rate h2:nth-child(2) {
+            font-size: 1rem;
+            color: #333;
+            margin-top: 5px; /* 두 번째 h2 요소의 상단 여백을 조정합니다. */
+        }
+
+        #exchange-rate p {
+            font-size: 1rem;
+            color: #333;
+            margin: 2px 0; /* 상하 여백을 더 좁힙니다. */
+        }
+    </style>
+</head>
+<body>
+    <div id="date"></div>
+    <div id="exchange-rate">
+        <h2>면세점 고시 환율</h2>
+        <h2>USD(달러화) $1 기준</h2>
+        <p>KRW(원화) ₩ 1,350</p>
+        <p>JPY(엔화) ￥ 150</p>
+        <p>CNY(위안화) 元 7.4</p>
+        <p>EUR(유로화) € 0.95</p>
+    </div>
+
+    <script>
+        function updateDate() {
+            const now = new Date();
+            const options = { timeZone: "Asia/Seoul", year: "numeric", month: "long", day: "numeric", weekday: "long" };
+            const formattedDate = now.toLocaleDateString('ko-KR', options);
+            document.getElementById('date').textContent = formattedDate;
+        }
+
+        setInterval(() => {
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+            const timeUntilMidnight = midnight - now;
+            setTimeout(updateDate, timeUntilMidnight);
+        }, 1000);
+
+        updateDate();
+    </script>
+</body>
+</html>

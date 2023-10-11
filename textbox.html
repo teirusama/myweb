@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>텍스트 상자</title>
+<style>
+  body {
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    height: 95vh; /* 화면 높이 전체를 차지하도록 설정 */
+  }
+  .text-box-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .text-box {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.1s linear; /* 텍스트 변경 시 부드러운 페이드 인/아웃 애니메이션을 추가합니다. */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .arrow {
+    font-size: 14px;
+    cursor: pointer;
+  }
+  /* 추가된 스타일: 텍스트 상자 위의 추가 텍스트 스타일 */
+  .additional-text {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="additional-text">알고 계셨나요?</div>
+<div class="text-box-container">
+  <div class="arrow" id="prev">&larr;</div>
+  <div class="text-box" id="text-box"></div>
+  <div class="arrow" id="next">&rarr;</div>
+</div>
+
+<script>
+  const textArray = [
+    "2023년 기준, 인천공항과 김해공항에는 해외에서 한국으로 귀국할 때에도 이용할 수 있는 ‘입국장 면세점’이 있습니다. 부피가 큰 물건을 여행하는 동안 들고 다니기 부담스럽다면 출국할 때가 아닌 입국할 때 면세 쇼핑하는 것이 더 나을 수도 있습니다.",
+    "두 번째 텍스트",
+    "세 번째 텍스트",
+    "네 번째 텍스트",
+    // 원하는 만큼 텍스트를 추가하세요
+  ];
+
+  let currentIndex = 0;
+  const textBox = document.getElementById('text-box');
+  let intervalId; // 추가: 인터벌 아이디를 저장할 변수
+
+  function showText(index) {
+    // 텍스트 변경 전에 현재 텍스트를 투명하게 만듭니다.
+    textBox.style.opacity = 0;
+
+    setTimeout(() => {
+      textBox.textContent = textArray[index];
+      
+      // 텍스트 변경 후에 텍스트를 다시 보이게 만듭니다.
+      setTimeout(() => {
+        textBox.style.opacity = 1;
+      }, 100);
+    }, 500); // 텍스트 변경 전에 0.5초 대기
+  }
+
+  function nextText() {
+    currentIndex = (currentIndex + 1) % textArray.length;
+    showText(currentIndex);
+
+    // 추가: 다음 텍스트로 넘길 때, 이전 인터벌을 제거하고 다시 8초 카운트
+    clearInterval(intervalId);
+    intervalId = setInterval(autoNextText, 8000);
+  }
+
+  function prevText() {
+    currentIndex = (currentIndex - 1 + textArray.length) % textArray.length;
+    showText(currentIndex);
+
+    // 추가: 이전 텍스트로 돌아갈 때, 이전 인터벌을 제거하고 다시 8초 카운트
+    clearInterval(intervalId);
+    intervalId = setInterval(autoNextText, 8000);
+  }
+
+  function autoNextText() {
+    nextText();
+  }
+
+  showText(currentIndex);
+
+  document.getElementById('prev').addEventListener('click', prevText);
+  document.getElementById('next').addEventListener('click', nextText);
+
+  // 8초마다 자동으로 다음 텍스트로 이동
+  intervalId = setInterval(autoNextText, 8000);
+</script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "exchangeRates": {
-    "USD": 1.0, // USD의 값을 1로 수정
+    "USD": 1.0,
     "KRW": 1450.0,
     "JPY": 170.0,
     "CNY": 7.6,

@@ -82,25 +82,25 @@
       setTimeout(() => {
         textBox.style.opacity = 1;
       }, 100);
-    }, 500); // 텍스트 변경 전에 0.5초 대기
+    }, 300); // 텍스트 변경 전에 0.3초 대기
   }
 
   function nextText() {
     currentIndex = (currentIndex + 1) % textArray.length;
     showText(currentIndex);
 
-    // 추가: 다음 텍스트로 넘길 때, 이전 인터벌을 제거하고 다시 8초 카운트
+    // 추가: 다음 텍스트로 넘길 때, 이전 인터벌을 제거하고 다시 10초 카운트
     clearInterval(intervalId);
-    intervalId = setInterval(autoNextText, 8000);
+    intervalId = setInterval(autoNextText, 10000);
   }
 
   function prevText() {
     currentIndex = (currentIndex - 1 + textArray.length) % textArray.length;
     showText(currentIndex);
 
-    // 추가: 이전 텍스트로 돌아갈 때, 이전 인터벌을 제거하고 다시 8초 카운트
+    // 추가: 이전 텍스트로 돌아갈 때, 이전 인터벌을 제거하고 다시 10초 카운트
     clearInterval(intervalId);
-    intervalId = setInterval(autoNextText, 8000);
+    intervalId = setInterval(autoNextText, 10000);
   }
 
   function autoNextText() {
@@ -112,8 +112,8 @@
   document.getElementById('prev').addEventListener('click', prevText);
   document.getElementById('next').addEventListener('click', nextText);
 
-  // 8초마다 자동으로 다음 텍스트로 이동
-  intervalId = setInterval(autoNextText, 8000);
+  // 10초마다 자동으로 다음 텍스트로 이동
+  intervalId = setInterval(autoNextText, 10000);
 </script>
 </body>
 </html>

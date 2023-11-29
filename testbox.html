@@ -13,7 +13,10 @@
     align-items: center; /* 수직 가운데 정렬 */
     justify-content: center; /* 수평 가운데 정렬 */
     height: 95vh; /* 화면 높이 전체를 차지하도록 설정 */
-    text-size-adjust: none;
+    -webkit-text-size-adjust: none; /*Chrome, Safari, newer versions of Opera*/
+    -moz-text-size-adjust: none; /*Firefox*/
+    -ms-text-size-adjust: none;  /*Ie*/
+    -o-text-size-adjust: none; /*old versions of Opera*/
   }
   .text-box-container {
     display: flex;
@@ -21,7 +24,6 @@
     align-items: center;
     width: 100%;
     margin: 70px;
-    text-size-adjust: none;
   }
   .text-box {
     width: 100%;
@@ -35,20 +37,17 @@
     justify-content: center;
     align-items: center;
     font-size: 1.125em;
-    text-size-adjust: none;
   }
   .arrow {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    text-size-adjust: none;
   }
   /* 추가된 스타일: 텍스트 상자 위의 추가 텍스트 스타일 */
   .additional-text {
     font-weight: bold;
     font-size: 1.3em;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    text-size-adjust: none;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 빛나는 효과를 생성하는 text-shadow 속성 
   }
 </style>
 </head>

@@ -124,12 +124,10 @@
   intervalId = setInterval(autoNextText, 10000);
 
   function setTextSize() {
-    const allTextElements = document.querySelectorAll('*'); // 모든 요소 선택
+    const devicePixelRatio = window.devicePixelRatio || 1;
     const consistentSize = '14px'; // 일관된 글자 크기
 
-    allTextElements.forEach(function(element) {
-      element.style.fontSize = consistentSize;
-    });
+    textBox.style.fontSize = (parseFloat(consistentSize) * devicePixelRatio) + 'px';
   }
 
   setTextSize();

@@ -128,7 +128,7 @@
   function ignoreUserFontSizePreference() {
     const allElements = document.querySelectorAll('*');
     allElements.forEach(element => {
-      element.style.fontSize = '14px'; // 여기서 16px는 고정하려는 특정한 글자 크기입니다. 원하는 값으로 변경하세요.
+      element.style.setProperty('font-size', '14px', 'important');
     });
   }
 

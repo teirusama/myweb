@@ -41,7 +41,7 @@
   /* 추가된 스타일: 텍스트 상자 위의 추가 텍스트 스타일 */
   .additional-text {
     font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 빛나는 효과를 생성하는 text-shadow 속성 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 빛나는 효과를 생성하는 text-shadow 속성 */
   }
 </style>
 </head>
@@ -122,17 +122,18 @@
 
   // 10초마다 자동으로 다음 텍스트로 이동
   intervalId = setInterval(autoNextText, 10000);
-
-  function setTextSize() {
-    const allTextElements = document.querySelectorAll('*');
-    const consistentSize = '14px'; // 일관된 글자 크기
-
-    allTextElements.forEach(function(element) {
-      element.style.fontSize = consistentSize;
+</script>
+<script>
+  // 추가: 사용자의 글자 크기 설정을 무시하고 항상 특정한 글자 크기로 표시하는 함수
+  function ignoreUserFontSizePreference() {
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(element => {
+      element.style.fontSize = '14px'; // 여기서 16px는 고정하려는 특정한 글자 크기입니다. 원하는 값으로 변경하세요.
     });
   }
 
-  setTextSize();
+  // 페이지 로드 후에 글자 크기를 설정합니다.
+  window.addEventListener('load', ignoreUserFontSizePreference);
 </script>
 </body>
 </html>

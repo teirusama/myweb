@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content= "width=device-width, initial-scale=1.0, user-scalable=no">
 <title>텍스트 상자</title>
 <style>
   body {
@@ -10,9 +11,9 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 95vh;
+    align-items: center; /* 수직 가운데 정렬 */
+    justify-content: center; /* 수평 가운데 정렬 */
+    height: 95vh; /* 화면 높이 전체를 차지하도록 설정 */
   }
   .text-box-container {
     display: flex;
@@ -27,7 +28,7 @@
     padding: 20px;
     border: none;
     opacity: 0;
-    transition: opacity 0.1s linear;
+    transition: opacity 0.1s linear; /* 텍스트 변경 시 부드러운 페이드 인/아웃 애니메이션을 추가합니다. */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,12 +40,22 @@
     font-weight: bold;
     cursor: pointer;
   }
+  /* 추가된 스타일: 텍스트 상자 위의 추가 텍스트 스타일 */
   .additional-text {
     font-weight: bold;
     font-size: 1.3em;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 빛나는 효과를 생성하는 text-shadow 속성 
   }
 </style>
+</head>
+<body>
+<div class="additional-text">알고 계셨나요?</div>
+<div class="text-box-container">
+  <div class="arrow" id="prev">&lt;</div>
+  <div class="text-box" id="text-box"></div>
+  <div class="arrow" id="next">&gt;</div>
+</div>
+
 <script>
   const textArray = [
     "대한민국의 모든 공항, 항만 면세점에서는 상품 가격을 미국 달러로 표기하고 있습니다.",
@@ -55,11 +66,12 @@
     "인천공항과 김해공항에는 귀국시에도 이용할 수 있는 입국장 면세점이 있습니다. 부피가 큰 물건을 여행하는 동안 들고 다니기 부담스럽다면 해외로 나갈 때가 아닌 한국으로 돌아온 뒤에 입국장 면세점에서 쇼핑하는 것이 더 나을 수도 있습니다.",
     "원화 현금 결제의 경우 50원 단위로 절삭됩니다. 예를 들어 원화 가격이 4930원이면 결제금액은 4900원, 4980원이면 결제금액은 4950원이 됩니다.",
     "면세점의 일부 제품은 환율 영향 및 공급 상황에 따라 오히려 시중가보다 더 비쌀 때도 있습니다. 구매전 시중가와 꼭 비교해보세요."
+    // 원하는 만큼 텍스트를 추가하세요
   ];
 
   let currentIndex = 0;
   const textBox = document.getElementById('text-box');
-  let intervalId;
+  let intervalId; // 추가: 인터벌 아이디를 저장할 변수
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) { 
@@ -69,21 +81,24 @@
   }
 
   function showText(index) {
+    // 텍스트 변경 전에 현재 텍스트를 투명하게 만듭니다.
     textBox.style.opacity = 0;
 
     setTimeout(() => {
       textBox.textContent = textArray[index];
-
+      
+      // 텍스트 변경 후에 텍스트를 다시 보이게 만듭니다.
       setTimeout(() => {
         textBox.style.opacity = 1;
       }, 100);
-    }, 300);
+    }, 300); // 텍스트 변경 전에 0.3초 대기
   }
 
   function nextText() {
     currentIndex = (currentIndex + 1) % textArray.length;
     showText(currentIndex);
 
+    // 추가: 다음 텍스트로 넘길 때, 이전 인터벌을 제거하고 다시 10초 카운트
     clearInterval(intervalId);
     intervalId = setInterval(autoNextText, 10000);
   }
@@ -92,6 +107,7 @@
     currentIndex = (currentIndex - 1 + textArray.length) % textArray.length;
     showText(currentIndex);
 
+    // 추가: 이전 텍스트로 돌아갈 때, 이전 인터벌을 제거하고 다시 10초 카운트
     clearInterval(intervalId);
     intervalId = setInterval(autoNextText, 10000);
   }
@@ -107,17 +123,8 @@
   document.getElementById('prev').addEventListener('click', prevText);
   document.getElementById('next').addEventListener('click', nextText);
 
+  // 10초마다 자동으로 다음 텍스트로 이동
   intervalId = setInterval(autoNextText, 10000);
-</script>
-<script>
-  // 추가된 부분: 기존 viewport 삭제 후 새로운 viewport 추가
-  var viewport = document.querySelector("meta[name=viewport]");
-  viewport.parentNode.removeChild(viewport);
-
-  var newViewport = document.createElement('meta');
-  newViewport.name = "viewport";
-  newViewport.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
-  document.getElementsByTagName('head')[0].appendChild(newViewport);
 </script>
 </body>
 </html>

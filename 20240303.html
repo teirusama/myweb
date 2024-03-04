@@ -10,41 +10,47 @@
             flex-direction: column;
             align-items: center; /* 수직 가운데 정렬 */
             justify-content: center; /* 수평 가운데 정렬 */
-            height: 100vh; /* 화면 높이 전체를 차지하도록 설정 */
-            margin-top: 100px;
+            height: 95vh; /* 화면 높이 전체를 차지하도록 설정 */
         }
 
         #date {
-            font-size: 5em;
+            font-size: 3.5em;
             font-weight: bold;
             color: white;
+            margin-top: 20px;
         }
 
         #exchange-rate {
-            font-size: 2em;
-            margin-top: 0px;
+            font-size: 1.2em;
             text-align: center; /* 텍스트를 가운데 정렬 */
         }
 
         /* 첫 번째 h2 요소의 상단 여백을 조정합니다. */
         #exchange-rate h2:first-child {
-            font-size: 2.4em;
+            font-size: 3.2em;
             color: white;
             margin-bottom: 2px;
         }
 
         /* 두 번째 h2 요소의 하단 여백을 조정합니다. */
         #exchange-rate h2:nth-child(2) {
-            font-size: 2.4em;
+            font-size: 3.2em;
             color: white;
             margin-top: 5px;
-            margin-bottom: 100px;
+            margin-bottom: 50px;
         }
 
         #exchange-rate p {
-            font-size: 2.2em;
+            font-size: 3em;
             color: white;
             margin: 20px 0;
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
     </style>
 </head>

@@ -10,47 +10,41 @@
             flex-direction: column;
             align-items: center; /* 수직 가운데 정렬 */
             justify-content: center; /* 수평 가운데 정렬 */
-            height: 95vh; /* 화면 높이 전체를 차지하도록 설정 */
+            height: 100vh; /* 화면 높이 전체를 차지하도록 설정 */
+            margin-top: 100px;
         }
 
         #date {
-            font-size: 3.5em;
+            font-size: 5em;
             font-weight: bold;
             color: white;
-            margin-top: 25px;
         }
 
         #exchange-rate {
-            font-size: 1.2em;
+            font-size: 2em;
+            margin-top: 0px;
             text-align: center; /* 텍스트를 가운데 정렬 */
         }
 
         /* 첫 번째 h2 요소의 상단 여백을 조정합니다. */
         #exchange-rate h2:first-child {
-            font-size: 3em;
+            font-size: 2.4em;
             color: white;
             margin-bottom: 2px;
         }
 
         /* 두 번째 h2 요소의 하단 여백을 조정합니다. */
         #exchange-rate h2:nth-child(2) {
-            font-size: 3em;
+            font-size: 2.4em;
             color: white;
             margin-top: 5px;
-            margin-bottom: 50px;
+            margin-bottom: 100px;
         }
 
         #exchange-rate p {
-            font-size: 3em;
+            font-size: 2.2em;
             color: white;
             margin: 20px 0;
-        }
-
-        .text-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
         }
     </style>
 </head>
@@ -59,10 +53,10 @@
     <div id="exchange-rate">
         <h2>오늘의 면세점 환율</h2>
         <h2>USD(달러화) $1 기준</h2>
-        <p>KRW(원화) ₩ 1,338.5</p>
-        <p>JPY(엔화) ￥ 150.93</p>
+        <p>KRW(원화) ₩ 1,338.7</p>
+        <p>JPY(엔화) ￥ 150.89</p>
         <p>CNY(위안화) 元 7.21</p>
-        <p>EUR(유로화) € 0.92</p>
+        <p>EUR(유로화) € 0.21</p>
     </div>
 
     <script>

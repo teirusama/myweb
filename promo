@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인천공항 페이지</title>
+    <style>
+        /* 스타일링 */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .textbox {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 0 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <div>
+        <label for="airport-select"></label>
+        <select id="airport-select">
+            <option value="t1">인천공항 T1</option>
+            <option value="t2">인천공항 T2</option>
+        </select>
+    </div>
+    <div id="content-container">
+        <button onclick="prev()">◀</button>
+        <div class="textbox" id="content"></div>
+        <button onclick="next()">▶</button>
+    </div>
+
+    <script>
+        // JavaScript 코드
+        const contentElement = document.getElementById('content');
+        const airportSelect = document.getElementById('airport-select');
+        let currentContentIndex = 0;
+        let contents = [];
+
+        // 내용 배열 초기화 (임시)
+        contents['t1'] = [
+            '인천공항 T1의 내용 1',
+            '인천공항 T1의 내용 2',
+            '인천공항 T1의 내용 3'
+        ];
+
+        contents['t2'] = [
+            '인천공항 T2의 내용 1',
+            '인천공항 T2의 내용 2',
+            '인천공항 T2의 내용 3'
+        ];
+
+        // 초기 내용 표시
+        displayContent();
+
+        // 드롭다운 선택 시 이벤트 핸들러
+        airportSelect.addEventListener('change', () => {
+            displayContent();
+        });
+
+        // 이전 내용 표시
+        function prev() {
+            if (currentContentIndex > 0) {
+                currentContentIndex--;
+                displayContent();
+            }
+        }
+
+        // 다음 내용 표시
+        function next() {
+            if (currentContentIndex < contents[airportSelect.value].length - 1) {
+                currentContentIndex++;
+                displayContent();
+            }
+        }
+
+        // 내용 표시 함수
+        function displayContent() {
+            contentElement.textContent = contents[airportSelect.value][currentContentIndex];
+        }
+    </script>
+</body>
+</html>

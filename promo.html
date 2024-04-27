@@ -16,14 +16,13 @@
     height: 95vh;
   }
   .dropdown {
-    margin-top: 50px;
+    margin-top: 40px;
   }
 
   #airport-select {
     font-size: 1em; /* 현재 설정된 폰트 크기 */
     padding: 6px; /* 상하좌우 여백 */
   }
-
 
   .text-box-container {
     display: flex;
@@ -69,13 +68,16 @@
 <script>
   const textMap = {
     'T1': [
-      "인천공항 T1 면세점에서는 미국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 유로 다섯 가지 통화를 사용할 수 있습니다.",
-      "인천공항 T1 면세점에서는 미국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 유로 다섯 가지 통화를 사용할 수 있습니다.",
-      "면세점에서는 신용카드/체크카드 사용이 가능하며, 현금과 카드의 혼합 결제도 가능합니다."
+      { text: "T1 신라면세점 할인 내용입니다. 블라블라블라블라블라블라블라블라블라블라블라블라", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "T1 신세계면세점 할인 내용입니다. 블라블라블라블라블라블라블라블라블라블라블라블라", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "T1 현대면세점 할인 내용입니다. 블라블라블라블라블라블라블라블라블라블라블라블라", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "T1 마지막 페이지입니다." }
     ],
     'T2': [
-      "인천공항 T2 면세점은 T1에 비해 면적이 작지만 다양한 브랜드와 제품을 찾아볼 수 있습니다.",
-      "T2 면세점에서는 미국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 유로 다섯 가지 통화를 현금으로 사용할 수 있습니다."
+      { text: "T2 신라면세점 할인 내용입니다. 블라블라블라블라블라블라블라블라블라블라블라블라", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "T2 신세계면세점 할인 내용입니다. 블라블라블라블라블라블라블라블라블라블라블라블라", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "T2 현대면세점 할인 내용입니다. 블라블라블라블라블라블라블라블라블라블라블라블라", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "T2 마지막 페이지입니다." }
     ]
   };
 
@@ -87,7 +89,16 @@
   function showText(index) {
     textBox.style.opacity = 0;
     setTimeout(() => {
-      textBox.textContent = textMap[airport][index];
+      const item = textMap[airport][index];
+      if (typeof item === 'string') {
+        // 문자열인 경우 텍스트 박스에 직접 텍스트 표시
+        textBox.innerHTML = `<img src="${item}" alt="">`;
+      } else {
+        // 객체인 경우 이미지와 텍스트를 함께 표시
+        const text = item.text;
+        const image = item.image;
+        textBox.innerHTML = `<img src="${image}" alt=""><p>${text}</p>`;
+      }
       setTimeout(() => {
         textBox.style.opacity = 1;
       }, 100);

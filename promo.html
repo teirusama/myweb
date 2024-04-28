@@ -56,6 +56,11 @@
     cursor: pointer;
   }
 
+  #additional-text {
+    font-size: 0.7em;
+    margin: 0;
+  }
+
 </style>
 </head>
 <body>
@@ -72,8 +77,6 @@
   <div class="text-box" id="text-box"></div>
   <div class="arrow" id="next">&gt;</div>
 </div>
-
-<p style="font-size: 0.8em; margin: 0;">*행사 내용은 4/28 기준이며 예고없이 변동될 수 있습니다.<p>
 
 <script>
   const textMap = {
@@ -147,6 +150,16 @@
   document.getElementById('next').addEventListener('click', nextText);
 
   intervalId = setInterval(autoNextText, 10000);
+
+  function addAdditionalText() {
+    const additionalText = document.createElement('p');
+    additionalText.textContent = '*4/28 기준이며 예고없이 변동될 수 있습니다.';
+    additionalText.id = 'additional-text';
+    document.body.appendChild(additionalText);
+  }
+
+  // 페이지가 로드되면 추가적인 텍스트를 추가
+  window.onload = addAdditionalText;
 </script>
 </body>
 </html>

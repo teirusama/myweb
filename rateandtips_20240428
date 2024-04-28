@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대한민국 현재 날짜 및 환율</title>
+    <style>
+        body {
+            color: black;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 95vh;
+            margin-top: 30px;
+            font-size: 1em;
+            line-height: 0.5;
+        }
+
+        #date {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="date"></div>
+    <div id="exchange-rate">
+        <p><strong>오늘의 면세점 환율 - USD 1 기준</strong></p>
+        <p>KRW 1,376.6 / JPY 155.58 / CNY 7.26 / EUR 0.93</p>
+    </div>
+
+    <script>
+        function updateDate() {
+            const now = new Date();
+            const options = { timeZone: "Asia/Seoul", year: "numeric", month: "long", day: "numeric", weekday: "long" };
+            const formattedDate = now.toLocaleDateString('ko-KR', options);
+            document.getElementById('date').textContent = formattedDate;
+        }
+
+        setInterval(() => {
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+            const timeUntilMidnight = midnight - now;
+            setTimeout(updateDate, timeUntilMidnight);
+        }, 1000);
+
+        updateDate();
+    </script>
+</body>
+</html>

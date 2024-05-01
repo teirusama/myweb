@@ -166,6 +166,24 @@
 
   // 페이지가 로드되면 추가적인 텍스트를 추가
   window.onload = addAdditionalText;
+ function fixTextSize() {
+            const baseFontSize = 16; // 기본 폰트 크기 (원하는 크기로 변경 가능)
+
+            // 현재 뷰포트의 너비를 가져옵니다.
+            const viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            // 텍스트 크기를 계산하여 설정합니다.
+            const calculatedFontSize = baseFontSize * (viewportWidth / 375); // 375는 기준 뷰포트 너비입니다.
+
+            // body 요소의 폰트 크기를 설정합니다.
+            document.body.style.fontSize = `${calculatedFontSize}px`;
+        }
+
+        // 페이지 로드 시 텍스트 크기를 고정합니다.
+        window.addEventListener('load', fixTextSize);
+
+        // 뷰포트 크기가 변경될 때마다 텍스트 크기를 다시 고정합니다.
+        window.addEventListener('resize', fixTextSize);
 </script>
 </body>
 </html>

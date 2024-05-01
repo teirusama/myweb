@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인천공항 면세점 정보</title>
 <style>
   body {
@@ -14,8 +14,7 @@
     justify-content: flex-end;
     height: 95vh;
     margin-top: 20px;
-    font-size: 1.1em;
-    overflow: hidden;
+    font-size: 1.1rem;
   }
   .dropdown {
     margin-top: 1px;
@@ -24,7 +23,7 @@
 
   #airport-select {
     padding: 5px; /* 상하좌우 여백 */
-    font-size: 1em;
+    font-size: 1rem;
   }
 
   .text-box-container {
@@ -64,7 +63,7 @@
   }
 
   #additional-text {
-    font-size: 0.7em;
+    font-size: 0.7rem;
     margin: 0;
   }
 
@@ -166,24 +165,6 @@
 
   // 페이지가 로드되면 추가적인 텍스트를 추가
   window.onload = addAdditionalText;
- function fixTextSize() {
-            const baseFontSize = 16; // 기본 폰트 크기 (원하는 크기로 변경 가능)
-
-            // 현재 뷰포트의 너비를 가져옵니다.
-            const viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
-            // 텍스트 크기를 계산하여 설정합니다.
-            const calculatedFontSize = baseFontSize * (viewportWidth / 375); // 375는 기준 뷰포트 너비입니다.
-
-            // body 요소의 폰트 크기를 설정합니다.
-            document.body.style.fontSize = `${calculatedFontSize}px`;
-        }
-
-        // 페이지 로드 시 텍스트 크기를 고정합니다.
-        window.addEventListener('load', fixTextSize);
-
-        // 뷰포트 크기가 변경될 때마다 텍스트 크기를 다시 고정합니다.
-        window.addEventListener('resize', fixTextSize);
 </script>
 </body>
 </html>

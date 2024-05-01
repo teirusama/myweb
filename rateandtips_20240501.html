@@ -51,6 +51,9 @@
             cursor: pointer;
         }
 
+        .limited-text {
+            font-size: 16px; /* 최대 허용 글자 크기 */
+        }
     </style>
 </head>
 <body>
@@ -149,21 +152,6 @@
 
         // 10초마다 자동으로 다음 텍스트로 이동
         intervalId = setInterval(autoNextText, 10000);
-
-        var maxFontSize = 24; // 최대 크기로 설정할 글자 크기
-
-        function limitFontSize() {
-            var bodyFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
-            
-            if (bodyFontSize > maxFontSize) {
-                document.body.style.fontSize = maxFontSize + 'px';
-            }
-        }
-        window.onload = function() {
-            document.addEventListener('keydown', limitFontSize);
-            document.addEventListener('mousemove', limitFontSize);
-            document.addEventListener('wheel', limitFontSize);
-        };
     </script>
 </body>
 </html>

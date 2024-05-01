@@ -178,6 +178,12 @@
         }
     }
 
+    // 페이지 로드 시 실행
+    document.addEventListener('keydown', limitFontSize);
+    document.addEventListener('mousemove', limitFontSize);
+    document.addEventListener('wheel', limitFontSize);
+  };
+
   // 페이지가 로드되면 추가적인 텍스트를 추가
   window.onload = addAdditionalText;
 </script>

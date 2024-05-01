@@ -15,7 +15,10 @@
     height: 95vh;
     margin-top: 20px;
     font-size: 1.1em;
-    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%; /* WebKit (Safari, Chrome) */
+     -moz-text-size-adjust: 100%; /* Firefox */
+      -ms-text-size-adjust: 100%; /* Internet Explorer */
+          text-size-adjust: 100%;
   }
   .dropdown {
     margin-top: 1px;

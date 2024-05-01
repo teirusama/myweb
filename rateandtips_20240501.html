@@ -56,7 +56,7 @@
 <body>
     <div id="date"></div>
     <div id="exchange-rate">
-        <p>오늘의 면세점 환율 - USD 1 기준<br>KRW 1378.7 / JPY 156.19<br>CNY 7.25 / EUR 0.93</p>
+        <p>오늘의 면세점 환율 - USD 1 기준<br>KRW 1376.6 / JPY 155.58<br>CNY 7.26 / EUR 0.93</p>
     </div>
 
     <div class="text-box-container">
@@ -150,20 +150,20 @@
         // 10초마다 자동으로 다음 텍스트로 이동
         intervalId = setInterval(autoNextText, 10000);
 
+        var maxFontSize = 24; // 최대 크기로 설정할 글자 크기
+
+        function limitFontSize() {
+            var bodyFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
+            
+            if (bodyFontSize > maxFontSize) {
+                document.body.style.fontSize = maxFontSize + 'px';
+            }
+        }
         window.onload = function() {
-          addAdditionalText();
-          // 최대 글자 크기 제한 설정
-          var maxFontSize = 18; // 최대 크기로 설정할 글자 크기
-      
-          // 사용자가 글자 크기를 변경할 때 실행되는 함수
-          function limitFontSize() {
-              var bodyFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
-              
-              // 최대 크기보다 크면 최대 크기로 설정
-              if (bodyFontSize > maxFontSize) {
-                  document.body.style.fontSize = maxFontSize + 'px';
-              }
-          }
+            document.addEventListener('keydown', limitFontSize);
+            document.addEventListener('mousemove', limitFontSize);
+            document.addEventListener('wheel', limitFontSize);
+        };
     </script>
 </body>
 </html>

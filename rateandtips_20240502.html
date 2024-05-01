@@ -50,6 +50,7 @@
             font-weight: bold;
             cursor: pointer;
         }
+
     </style>
 </head>
 <body>
@@ -64,10 +65,7 @@
         <div class="arrow" id="next">&gt;</div>
     </div>
 
-    <script>
-      document.body.style.webkitTextSizeAdjust = '50%'; 
-      document.body.style.MozTextSizeAdjust = '50%';
-        
+    <script src="https://raw.githubusercontent.com/LeaVerou/prefixfree/gh-pages/prefixfree.min.js">
         function updateDate() {
             const now = new Date();
             const options = { timeZone: "Asia/Seoul", year: "numeric", month: "long", day: "numeric", weekday: "long" };

@@ -67,6 +67,9 @@
     margin: 0;
   }
 
+  .limited-text {
+      font-size: 16px; /* 최대 허용 글자 크기 */
+  }
 </style>
 </head>
 <body>
@@ -165,26 +168,6 @@
 
   // 페이지가 로드되면 추가적인 텍스트를 추가
   window.onload = addAdditionalText;
-
-  var maxFontSize = 24; // 최대 크기로 설정할 글자 크기
-
-  // 사용자가 글자 크기를 변경할 때 실행되는 함수
-  function limitFontSize() {
-      var bodyFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
-      
-      // 최대 크기보다 크면 최대 크기로 설정
-      if (bodyFontSize > maxFontSize) {
-          document.body.style.fontSize = maxFontSize + 'px';
-      }
-  }
-
-  // 페이지 로드 시 실행
-  window.onload = function() {
-      // 글자 크기 변경 이벤트 모니터링
-      document.addEventListener('keydown', limitFontSize);
-      document.addEventListener('mousemove', limitFontSize);
-      document.addEventListener('wheel', limitFontSize);
-  };
 </script>
 </body>
 </html>

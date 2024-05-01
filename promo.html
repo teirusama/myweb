@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인천공항 면세점 정보</title>
 <style>
   body {
@@ -14,11 +14,7 @@
     justify-content: flex-end;
     height: 95vh;
     margin-top: 20px;
-    font-size: 13px;
-    -webkit-text-size-adjust: 100%; /* WebKit (Safari, Chrome) */
-     -moz-text-size-adjust: 100%; /* Firefox */
-      -ms-text-size-adjust: 100%; /* Internet Explorer */
-          text-size-adjust: 100%;
+    font-size: 1.1em;
   }
   .dropdown {
     margin-top: 1px;
@@ -166,6 +162,21 @@
     additionalText.id = 'additional-text';
     document.body.appendChild(additionalText);
   }
+
+  window.onload = function() {
+    addAdditionalText();
+    // 최대 글자 크기 제한 설정
+    var maxFontSize = 18; // 최대 크기로 설정할 글자 크기
+
+    // 사용자가 글자 크기를 변경할 때 실행되는 함수
+    function limitFontSize() {
+        var bodyFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
+        
+        // 최대 크기보다 크면 최대 크기로 설정
+        if (bodyFontSize > maxFontSize) {
+            document.body.style.fontSize = maxFontSize + 'px';
+        }
+    }
 
   // 페이지가 로드되면 추가적인 텍스트를 추가
   window.onload = addAdditionalText;

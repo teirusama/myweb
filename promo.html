@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인천공항 면세점 정보</title>
 <style>
   body {
@@ -165,19 +165,6 @@
 
   // 페이지가 로드되면 추가적인 텍스트를 추가
   window.onload = addAdditionalText;
-
-  // 최대 글자 크기 제한
-var maxFontSize = 11; // 최대 크기로 설정할 글자 크기
-
-// 사용자가 글자 크기를 변경할 때 실행되는 함수
-function limitFontSize() {
-    var bodyFontSize = parseFloat(window.getComputedStyle(document.body, null).getPropertyValue('font-size'));
-    
-    // 최대 크기보다 크면 최대 크기로 설정
-    if (bodyFontSize > maxFontSize) {
-        document.body.style.fontSize = maxFontSize + 'px';
-    }
-};
 </script>
 </body>
 </html>

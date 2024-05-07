@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>대한민국 현재 날짜 및 환율</title>
+    <style>
+        body {
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 95vh;
+            margin-top: 30px;
+            font-size: 1em;
+        }
+
+        #date {
+            font-weight: bold; /* 날짜 부분의 폰트를 굵게 지정 */
+            margin-bottom: -10px;
+        }
+
+        .text-box-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 200px;
+
+        }
+
+        .text-box {
+            width: 100%;
+            height: 200px;
+            padding: 6px;
+            opacity: 0;
+            transition: opacity 0.1s linear; /* 텍스트 변경 시 부드러운 페이드 인/아웃 애니메이션을 추가합니다. */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .arrow {
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="date"></div>
+    <div id="exchange-rate">
+        <p>오늘의 면세점 환율 - USD 1 기준<br>KRW 1376.6 / JPY 155.58<br>CNY 7.26 / EUR 0.93</p>
+    </div>
+
+    <div class="text-box-container">
+        <div class="arrow" id="prev">&lt;</div>
+        <div class="text-box" id="text-box"></div>
+        <div class="arrow" id="next">&gt;</div>
+    </div>
+
+    <script>
+        function updateDate() {
+            const now = new Date();
+            const options = { timeZone: "Asia/Seoul", year: "numeric", month: "long", day: "numeric", weekday: "long" };
+            const formattedDate = now.toLocaleDateString('ko-KR', options);
+            document.getElementById('date').textContent = formattedDate;
+        }
+
+        setInterval(() => {
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+            const timeUntilMidnight = midnight - now;
+            setTimeout(updateDate, timeUntilMidnight);
+        }, 1000);
+
+        updateDate();
+
+        const textArray = [
+            "대한민국의 모든 공항, 항만 면세점에서는 상품 가격을 미국 달러로 표기하고 있습니다.",
+            "인천공항 면세점에서는 미국 달러, 한국 원, 일본 엔, 중국 위안, 유럽 유로 다섯가지 통화 현금을 사용할 수 있습니다. ",
+            "면세점에서는 신용카드/체크카드 사용이 가능하며, 현금과 카드의 혼합 결제도 가능합니다.",
+            "면세점 상품 가격에 적용되는 '면세점 고시 환율'은 은행이나 포털사이트에 게재된 환율과 다릅니다. 이 앱에서는 면세점 고시 환율을 적용하고 있습니다.",
+            "국내에는 신라, 신세계, 현대, 롯데 등 면세 사업을 전개하는 다양한 기업들이 있습니다. 각 면세점별 할인율을 비교하면 더 저렴하고 스마트한 쇼핑을 할 수 있습니다.",
+            "인천,김해,김포 등 일부 공항에는 귀국시에도 이용할 수 있는 입국장 면세점이 있습니다. 부피가 큰 물건을 여행하는 동안 들고 다니기 부담스럽다면 해외로 나갈 때가 아닌 한국으로 돌아온 뒤에 입국장 면세점에서 쇼핑하는 것이 더 나을 수도 있습니다.",
+            "인천공항은 매우 넓고 면세점은 공항 곳곳에 흩어져있으므로 사전에 쇼핑 동선을 계획해서 가면 더 여유롭고 쾌적한 쇼핑을 즐기실 수 있습니다. 할인없이 구매했다가 탑승전 환불해야할 경우 이동에만 30분 가까이 소요될 수 있습니다."
+            // 원하는 만큼 텍스트를 추가하세요
+        ];
+
+        let currentIndex = 0;
+        const textBox = document.getElementById('text-box');
+        let intervalId; // 추가: 인터벌 아이디를 저장할 변수
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) { 
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function showText(index) {
+            // 텍스트 변경 전에 현재 텍스트를 투명하게 만듭니다.
+            textBox.style.opacity = 0;
+
+            setTimeout(() => {
+                textBox.textContent = textArray[index];
+
+                // 텍스트 변경 후에 텍스트를 다시 보이게 만듭니다.
+                setTimeout(() => {
+                    textBox.style.opacity = 1;
+                }, 100);
+            }, 300); // 텍스트 변경 전에 0.3초 대기
+        }
+
+        function nextText() {
+            currentIndex = (currentIndex + 1) % textArray.length;
+            showText(currentIndex);
+
+            // 추가: 다음 텍스트로 넘길 때, 이전 인터벌을 제거하고 다시 10초 카운트
+            clearInterval(intervalId);
+            intervalId = setInterval(autoNextText, 10000);
+        }
+
+        function prevText() {
+            currentIndex = (currentIndex - 1 + textArray.length) % textArray.length;
+            showText(currentIndex);
+
+            // 추가: 이전 텍스트로 돌아갈 때, 이전 인터벌을 제거하고 다시 10초 카운트
+            clearInterval(intervalId);
+            intervalId = setInterval(autoNextText, 10000);
+        }
+
+        function autoNextText() {
+            nextText();
+        }
+
+        shuffleArray(textArray);
+
+        showText(currentIndex);
+
+        document.getElementById('prev').addEventListener('click', prevText);
+        document.getElementById('next').addEventListener('click', nextText);
+
+        // 10초마다 자동으로 다음 텍스트로 이동
+        intervalId = setInterval(autoNextText, 10000);
+    </script>
+</body>
+</html>

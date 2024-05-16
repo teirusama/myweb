@@ -7,12 +7,12 @@
 <style>
   body {
     color: white;
-    font-family: Arial, sans-serif;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center; /* 수직 가운데 정렬 */
     justify-content: center; /* 수평 가운데 정렬 */
+    font-size: 1em;
     height: 95vh; /* 화면 높이 전체를 차지하도록 설정 */
   }
   .text-box-container {
@@ -40,21 +40,10 @@
     font-weight: bold;
     cursor: pointer;
   }
-  /* 추가된 스타일: 텍스트 상자 위의 추가 텍스트 스타일 */
-  .additional-text {
-    font-weight: bold;
-    font-size: 1.3em;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* 빛나는 효과를 생성하는 text-shadow 속성 
-  }
+
 </style>
 </head>
 <body>
-<div class="additional-text">알고 계셨나요?</div>
-<div class="text-box-container">
-  <div class="arrow" id="prev">&lt;</div>
-  <div class="text-box" id="text-box"></div>
-  <div class="arrow" id="next">&gt;</div>
-</div>
 
 <script>
   const textArray = [

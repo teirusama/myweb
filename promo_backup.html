@@ -11,14 +11,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     height: 95vh;
-    margin-top: 20px;
-    font-size: 1.1em;
+    margin-top: 30px;
+    font-size: 1em;
   }
   .dropdown {
-    margin-top: 1px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 50px;
   }
 
   #airport-select {
@@ -31,23 +31,25 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 260px;
+    height: 70%;
   }
   .text-box {
     position: relative;
     width: 100%;
-    height: 260px;
+    height: 70%;
     padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.15s linear;
+    overflow-y: auto; 
   }
 
   .text-box p {
     position: absolute; /* 텍스트를 절대 위치로 설정 */
+    text-align: left;
   }
 
   .text-box img {
@@ -65,6 +67,7 @@
   #additional-text {
     font-size: 0.7em;
     margin: 0;
+    white-space: pre-line;
   }
 
 </style>
@@ -87,8 +90,8 @@
 <script>
   const textMap = {
     'T1': [
-      { text: "<strong>신라면세점</strong><br><br>주류 1병 10% 할인<br>담배 2보루 5% 할인<br>화장품 2개 5% 할인<br>식품/과자 5% 할인<br>기타 사은품 증정", image: "https://teirusama.github.io/myweb/shilla.png" }, 
-      { text: "<strong>신세계면세점</strong><br><br>주류 1병 8% 할인<br>담배 2보루 12% 할인<br>화장품 2개 20% 할인<br>식품/과자 5% 할인<br>기타 사은품 증정", image: "https://teirusama.github.io/myweb/shinsegae.png" },
+      { text: "<strong>신라면세점</strong><br>전화:032-743-1701<br>위치:게이트 29(메인),<br>28,26,18,12,11,117(탑승동)<br><br><strong>주류</strong><br>1병 5%, 2병 10%, 3병 15%<br>발렌타인 23년 28% 할인<br>조니워커 블루 2병 30% 할인<br><br><strong>담배</strong><br>국산 2보루 5%, 4보루 10%, 6보루 15% / 말보로 2보루 5%, 3보루 10%, 4보루 15% / 던힐 2보루 10%, 3보루 15% / 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1 국산 및 던힐 일부 제품 1+1", image: "https://teirusama.github.io/myweb/shilla.png" }, 
+      { text: "<strong>신세계면세점</strong><br><br><strong>주류</strong><br>1병(회원만)5%, 2병 10%, 3병 15%<br>발렌타인 23년 28% 할인<br>조니워커 블루 2병 30% 할인<br><br><strong>담배</strong><br>2보루 이상 5%-20% 할인<br>일부 제품 1+1", image: "https://teirusama.github.io/myweb/shinsegae.png" },
       { text: "<strong>현대면세점</strong><br><br>주류 1병 15% 할인<br>담배 2보루 15% 할인<br>화장품 2개 15% 할인<br>식품/과자 12% 할인<br>기타 사은품 증정", image: "https://teirusama.github.io/myweb/hyundai.png" },
       { text: "<strong>경복궁면세점</strong><br><br>주류 1병 10% 할인<br>담배 2보루 9% 할인<br>화장품 2개 15% 할인<br>식품/과자 15% 할인<br>기타 사은품 증정", image: "https://teirusama.github.io/myweb/kyungbokkung.png" },
       { text: "<strong>시티면세점</strong><br><br>주류 1병 20% 할인<br>담배 2보루 10% 할인<br>화장품 2개 10% 할인<br>식품/과자 20% 할인<br>기타 사은품 증정", image: "https://teirusama.github.io/myweb/city.png" }
@@ -158,7 +161,7 @@
 
   function addAdditionalText() {
     const additionalText = document.createElement('p');
-    additionalText.textContent = '*4/28 기준이며 예고없이 변동될 수 있습니다.';
+    additionalText.textContent = '*5/16 기준이며 변동, 누락이 있을 수 있습니다.\n*행사별 중복 적용이 불가능할 수 있습니다.';
     additionalText.id = 'additional-text';
     document.body.appendChild(additionalText);
   }

@@ -22,47 +22,12 @@
             margin-bottom: -10px;
         }
 
-        .text-box-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            height: 200px;
-
-        }
-
-        .text-box {
-            width: 100%;
-            height: 200px;
-            padding: 6px;
-            opacity: 0;
-            transition: opacity 0.1s linear; /* 텍스트 변경 시 부드러운 페이드 인/아웃 애니메이션을 추가합니다. */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .arrow {
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
     </style>
 </head>
 <body>
     <div id="date"></div>
     <div id="exchange-rate">
         <p>오늘의 면세점 환율 - USD 1 기준<br>KRW 1376.6 JPY 155.58<br>CNY 7.26 EUR 0.93</p>
-    </div>
-
-    <div class="text-box-container">
-        <div class="arrow" id="prev">&lt;</div>
-        <div class="text-box" id="text-box"></div>
-        <div class="arrow" id="next">&gt;</div>
     </div>
 
     <script>

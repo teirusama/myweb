@@ -158,18 +158,18 @@
 
   intervalId = setInterval(autoNextText, 10000);
 
-  window.onload = addAdditionalText;
-
-  window.onload = function() {
-    document.querySelector('.text-box').scrollTop = 0;
-  };
-
   function addAdditionalText() {
     const additionalText = document.createElement('p');
     additionalText.textContent = '*5/16 기준이며 변동, 누락이 있을 수 있습니다.\n*행사별 중복 적용이 불가능할 수 있습니다.';
     additionalText.id = 'additional-text';
     document.body.appendChild(additionalText);
   }
+
+  window.onload = addAdditionalText;
+
+   window.onload = function() {
+    document.querySelector('.text-box').scrollTop = 0;
+  };
 
 </script>
 </body>
